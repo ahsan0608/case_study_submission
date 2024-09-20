@@ -12,7 +12,7 @@ Cron job that runs `logrotate` every 10 minutes between 2 AM and 4 AM
 ```
 
 ### 3. Deploy NTPD Package, Nagios to Servers
-Heres the ansible project [Ansible deploy ntpd](#project-links).
+Heres the ansible project [Ansible deploy ntpd](https://github.com/ahsan0608/case_study_submission/tree/main/ansible_deploy_ntpd_nagios).
 This project is designed to:
 1. Deploy the NTP service with a custom configuration on a set of servers.
 ```bash
@@ -76,7 +76,7 @@ helm install customer-abc-elasticsearch ./elasticsearch -f ./elasticsearch/envs/
 ```
 
 Here’s a link to the Helm project repository:
-- **Helm Project (Elasticsearch Deployment)**: [Helm Project Repository Link](#)
+- **Helm Project (Elasticsearch Deployment)**: [Helm Project Repository Link](https://github.com/ahsan0608/case_study_submission/tree/main/elasticsearch_helm)
 
 After deploying Elasticsearch, I captured the YAML output of the deployment and a screenshot of the running pods using
 
@@ -84,7 +84,7 @@ After deploying Elasticsearch, I captured the YAML output of the deployment and 
 kubectl get statefulset elasticsearch-cluster -o yaml
 ```
 
-<img width="885" alt="Screenshot 2024-09-20 at 10 57 00 PM" src="https://github.com/user-attachments/assets/f42d0b89-b363-443b-a8bd-9acd96b71fa9">
+<img width="795" alt="Screenshot 2024-09-20 at 11 49 57 PM" src="https://github.com/user-attachments/assets/2c6f84ef-6b4b-43ee-a315-557c46bb4df9">
 ---
 
 ## Metrics
