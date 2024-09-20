@@ -1,0 +1,12 @@
+---
+- name: Deploy NTP and Monitoring
+  hosts: ntp_servers
+  become: yes
+  roles:
+    - ntp
+
+- name: Deploy Nagios Monitoring
+  hosts: nagios_server
+  become: yes
+  roles:
+    - nagios

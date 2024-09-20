@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.global.name | quote }}
+  namespace: {{ .Values.global.namespace | quote }}
+spec:
+  serviceName: {{ .Values.deployment.serviceName | quote }}
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.global.name | quote }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.global.name | quote }}
+    spec:
+      containers:
+        - name: elasticsearch
+          image: {{ .Values.deployment.containers.images | quote }}
+          ports:
+            - containerPort: 9200
+            - containerPort: 9300
+          resources:
+            requests:
+              cpu: {{ .Values.deployment.containers.resources.requests.cpu | quote }}
+              memory: {{ .Values.deployment.containers.resources.requests.memory | quote }}
+            limits:
+              cpu: {{ .Values.deployment.containers.resources.limits.cpu | quote }}
+              memory: {{ .Values.deployment.containers.resources.limits.memory | quote }}
+          volumeMounts:
+            - name: elasticsearch-data  # Mounting the volume from PVC
+              mountPath: /usr/share/elasticsearch/data
+  volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-data  # This must match the volume mount name
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.deployment.volumeClaimTemplates.storage | quote }}
+        storageClassName: {{ default "" .Values.deployment.volumeClaimTemplates.storageClassName | quote }}
+        volumeName: {{ .Values.deployment.volumeClaimTemplates.volumeName | quote }}  # Add this to explicitly bind the PVC to the PV

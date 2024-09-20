@@ -1,0 +1,26 @@
+global:
+  name: elasticsearch-cluster
+  namespace: default
+  esVersion: 7
+  esURI: http://elasticsearch-cluster-headless:9200
+
+deployment:
+  serviceName: elasticsearch-cluster-headless
+  clusterNodes: elasticsearch-cluster-0
+  containers:
+    images: elasticsearch:7.17.3
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "512Mi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+  volumeClaimTemplates:
+    storage: 5Gi
+    storageClassName: ""  
+  cluster:
+    initial_master_nodes:
+      - elasticsearch-cluster-0
+    discovery.seed_hosts:
+      - elasticsearch-cluster-0
