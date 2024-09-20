@@ -15,7 +15,13 @@ Cron job that runs `logrotate` every 10 minutes between 2 AM and 4 AM
 Heres the ansible project [Ansible deploy ntpd](#project-links).
 This project is designed to:
 1. Deploy the NTP service with a custom configuration on a set of servers.
+```bash
+ansible-playbook playbook.yml --tags ntp
+```
 2. Deploy Nagios monitoring templates to monitor the NTP process on these servers.
+```bash
+ansible-playbook playbook.yml --tags nagios
+```
 
 ---
 
@@ -77,11 +83,11 @@ After deploying Elasticsearch, I captured the YAML output of the deployment and 
 ```bash
 kubectl get statefulset elasticsearch-cluster -o yaml
 ```
-Heres the screenshoot:
+
 <img width="885" alt="Screenshot 2024-09-20 at 10 57 00 PM" src="https://github.com/user-attachments/assets/f42d0b89-b363-443b-a8bd-9acd96b71fa9">
 ---
 
-## Metrics (Prometheus)
+## Metrics
 
 ### 1. How Prometheus Works
 

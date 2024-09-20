@@ -3,10 +3,10 @@
   hosts: ntp_servers
   become: yes
   roles:
-    - ntp
+    - { role: ntp, tags: ['ntp'] }
 
 - name: Deploy Nagios Monitoring
   hosts: nagios_server
   become: yes
   roles:
-    - nagios
+    - { role: nagios, tags: ['nagios'] }
